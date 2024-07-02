@@ -3,15 +3,6 @@
 인접한 통나무 높이차가 가장 큰 값이 해당 배열의 난이도
 난이도가 최소가 되도록 구성
 '''
-
-'''
-1 . 리스트 정렬
-2 . 정렬된 리스트의 순서대로 새로운 리스트의 양끝에 배치
-    2-1. 예를들어 정렬시킨 리스트가 2 4 5 7 9 라고하면
-         2번으로 배치하게 되면 2 5 9 7 4가 된다.
-         
-'''
-
 # T = int(input())
 
 # for _ in range(T):
@@ -27,6 +18,7 @@
 
 #     print(level)
 
+## 리스트 배치하는 방식
 T = int(input())
 
 for _ in range(T):
@@ -48,3 +40,4 @@ for _ in range(T):
         result = max(result , abs(new[i] - new[i-1]))
     
     print(result)
+
