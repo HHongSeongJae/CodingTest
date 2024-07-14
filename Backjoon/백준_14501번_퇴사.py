@@ -20,27 +20,22 @@
 #     if 현재일수 > N:
 #         return
 
+#     result = max(result , 현재까지의 전체 cost 합)
+
 #     ## dfs는 T를 기준으로 방문한 T가 N을 넘지 않으면 계속 방문
 #     ## T를 방문하면 i + T[i] 가 되어야한다.
     
-#     for i in range(시작점,n+1):
-#         if visited[i] == 0:
-#             continue
-        
-#             visited[i] = 1 # 방문처리
+#     for i in range(시작점,n+1):       
 #             s.append(P[i]) # 현재 cost 추가
 #             dfs(i+T[i])
 #             s.pop()
-#             vistied[i] = 0
     
 #     return 방문 노드의 cost 합
 
 # result = 0
 # for i in range(N):
-#     visited = [0] * n
 #     c = [] # 모든 cost 값 저장
 #     dfs(i)
-#     result = max(result , sum(c))
 
 # print(result)
 # '''
