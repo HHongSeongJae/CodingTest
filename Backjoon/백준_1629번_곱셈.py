@@ -6,19 +6,38 @@
 # print((a**b) % c)
 
 # # 재귀함수 활용 분할정복 알고리즘 적용
+# import sys
+
+# a,b,c = map(int,sys.stdin.readline().split())
+
+# def result(a,n):
+#     if n == 1:
+#         return a % c
+#     else:
+#         x = result(a, n//2)
+
+#         if n % 2 == 0:
+#             return (x * x) % c
+#         else:
+#             return (x * x * a) % c
+
+# print(result(a,b))
+
+## 반복문
 import sys
 
 a,b,c = map(int,sys.stdin.readline().split())
 
 def result(a,n):
-    if n == 1:
-        return a % c
-    else:
-        x = result(a, n//2)
+    result = 1
+    
+    while n:
+        if n % 2 == 1:
+            result = (result * a) % c
+        a = (a * a) % c
+        n=n//2
+    
+    return result
 
-        if n % 2 == 0:
-            return (x * x) % c
-        else:
-            return (x * x * a) % c
 
 print(result(a,b))
