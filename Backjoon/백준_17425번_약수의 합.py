@@ -5,6 +5,7 @@ MAXNUM = 1000000 # 문제의 최대 자연수
 # f = [1 for _ in range(MAXNUM+1)]
 # g = [0 for _ in range(MAXNUM+1)]
 
+
 ### 곱셈을 통해서 초기화
 f = [1] * (MAXNUM+1)
 g = [0] * (MAXNUM+1)
