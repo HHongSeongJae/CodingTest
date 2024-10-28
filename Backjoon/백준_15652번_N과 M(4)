@@ -1,0 +1,16 @@
+# 해당 문제는 N과M(3)에서 "고른 수열은 비내림차순이어야 한다." 라는 조건이 추가 되었다.
+
+def dfs(start, cnt , N , M , res):
+    if cnt == M:
+        print(*res)
+        res = []
+        return
+
+    for i in range(start, N+1): # 해당 부분에서 range(start,N+1)로 시작해주면된다.
+        res.append(i)
+        dfs(i, cnt+1 , N ,M, res)
+        res.pop()
+
+res = []
+n,m = map(int,input().split())
+dfs(1,0,n,m,res)
