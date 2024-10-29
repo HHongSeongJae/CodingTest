@@ -1,16 +1,49 @@
 # 해당 문제는 N과M(3)에서 "고른 수열은 비내림차순이어야 한다." 라는 조건이 추가 되었다.
+# def dfs(start, cnt , N , M , res):
+#     if cnt == M:
+#         print(*res)
+#         res = []
+#         return
 
-def dfs(start, cnt , N , M , res):
-    if cnt == M:
-        print(*res)
-        res = []
+#     for i in range(start, N+1): # 해당 부분에서 range(start,N+1)로 시작해주면된다.
+#         res.append(i)
+#         dfs(i, cnt+1 , N ,M, res)
+#         res.pop()
+
+# res = []
+# n,m = map(int,input().split())
+# dfs(1,0,n,m,res)
+
+
+# 선택의 관점에서의 풀이
+# N과 M(2)와 동일하지만 이번에는 중복이 허용된다.
+# 따라서 선택한 숫자가 몇번 선택되었는지를 유지해야한다.
+# 또한 1 11 111 1111 형식으로 동일한 수가 선택되었다고 했을 때 m자리 수를 맞추기 때문에
+# 1222 1122 1112 1111 이렇게 되면 1이 많이 선택될 수록 사전순서에서 가장 앞선다
+# 그렇기 때문에 가장 많이 선택되는 경우부터 거꾸로 확인하는 방식을 사용한다.
+
+n , m = map(int,input().split())
+res = [0] * (n+1)
+
+def dfs(idx , select, n , m):
+    if select == m:
+        for i in range(1,n+1):
+            for j in range(res[i]):
+                print(str(i), end=' ')
+        print()
         return
 
-    for i in range(start, N+1): # 해당 부분에서 range(start,N+1)로 시작해주면된다.
-        res.append(i)
-        dfs(i, cnt+1 , N ,M, res)
-        res.pop()
+    # 선택할 숫자가 없지만 아직 select개수가 m개가 안되는 경우
+    if idx > n:
+        return
+    
+    # 또한 1 11 111 1111 형식으로 동일한 수가 선택되었다고 했을 때 m자리 수를 맞추기 때문에
+    # 1222 1122 1112 1111 이렇게 되면 1이 많이 선택될 수록 사전순서에서 가장 앞선다
+    # 그렇기 때문에 가장 많이 선택되는 경우부터 거꾸로 확인하는 방식을 사용한다.
+    for z in range(m-select, 0 , -1):
+        res[idx] = z
+        dfs(idx+1 , select + z , n , m)
+    res[idx] = 0
+    dfs(idx+1 , select, n , m)
 
-res = []
-n,m = map(int,input().split())
-dfs(1,0,n,m,res)
+dfs(1,0,n,m)
